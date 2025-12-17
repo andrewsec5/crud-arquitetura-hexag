@@ -34,8 +34,8 @@ public class UsuarioController {
     }
 
     @PatchMapping("/{id}")
-    public Usuario alterarNome(@RequestBody String nome, @PathVariable String id){
-        return usuarioService.alterarNome(nome, id);
+    public Usuario alterarNome(@RequestBody NomeDTO nome, @PathVariable String id){
+        return usuarioService.alterarNome(nome.nome(), id);
     }
 
     @DeleteMapping("/{id}")
