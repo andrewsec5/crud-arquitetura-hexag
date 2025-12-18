@@ -1,41 +1,44 @@
 package br.com.andrewsec5.sistema_pix.adapter.input;
 
+import br.com.andrewsec5.sistema_pix.adapter.output.UsuarioWithIdResponse;
+import br.com.andrewsec5.sistema_pix.adapter.output.mapper.UsuarioMapper;
 import br.com.andrewsec5.sistema_pix.core.domain.Usuario;
 import br.com.andrewsec5.sistema_pix.port.input.UsuarioServicePort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
     private final UsuarioServicePort usuarioService;
+    private final UsuarioMapper mapper;
 
-    public UsuarioController(UsuarioServicePort usuarioService) {
+    public UsuarioController(UsuarioServicePort usuarioService, UsuarioMapper mapper) {
         this.usuarioService = usuarioService;
+        this.mapper = mapper;
     }
 
     @PostMapping
-    public Usuario cadastrarUsuario(@RequestBody UsuarioDTO request){
+    public UsuarioWithIdResponse cadastrarUsuario(@RequestBody UsuarioDTO request){
         Usuario usuario = new Usuario(request.nome(), request.cpf(), request.dataNascimento());
-        return usuarioService.cadastrarUsuario(usuario);
+        return mapper.toResponse(usuarioService.cadastrarUsuario(usuario));
     }
 
     @GetMapping("/{id}")
-    public Usuario consultarUsuarioPorId(@PathVariable String id){
-        return usuarioService.consultarUsuarioPorId(id);
+    public UsuarioWithIdResponse consultarUsuarioPorId(@PathVariable String id){
+        return mapper.toResponse(usuarioService.consultarUsuarioPorId(id));
     }
 
     @GetMapping
-    public List<Usuario> listarTodosUsuarios(){
-        return usuarioService.listarTodosUsuarios();
+    public List<UsuarioWithIdResponse> listarTodosUsuarios(){
+        return mapper.toResponse(usuarioService.listarTodosUsuarios());
     }
 
     @PatchMapping("/{id}")
-    public Usuario alterarNome(@RequestBody NomeDTO nome, @PathVariable String id){
-        return usuarioService.alterarNome(nome.nome(), id);
+    public UsuarioWithIdResponse alterarNome(@RequestBody NomeDTO nome, @PathVariable String id){
+        return mapper.toResponse(usuarioService.alterarNome(nome.nome(), id));
     }
 
     @DeleteMapping("/{id}")

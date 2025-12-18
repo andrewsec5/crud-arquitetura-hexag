@@ -1,5 +1,6 @@
 package br.com.andrewsec5.sistema_pix.adapter.output.mapper;
 
+import br.com.andrewsec5.sistema_pix.adapter.output.UsuarioWithIdResponse;
 import br.com.andrewsec5.sistema_pix.adapter.output.entity.UsuarioEntity;
 import br.com.andrewsec5.sistema_pix.core.domain.Usuario;
 
@@ -15,9 +16,19 @@ public class UsuarioMapper {
         return new Usuario(entity.getId(), entity.getNome(), entity.getDataNascimento(), entity.getCpf(), entity.isAtivo());
     }
 
-    public List<Usuario> toDomain(List<UsuarioEntity> documents){
-        return documents.stream()
+    public List<Usuario> toDomain(List<UsuarioEntity> entities){
+        return entities.stream()
                 .map(this::toDomain)
+                .toList();
+    }
+
+    public UsuarioWithIdResponse toResponse(Usuario domain){
+        return new UsuarioWithIdResponse(domain.getId(), domain.getNome(), domain.getCpf(), domain.getDataNascimento());
+    }
+
+    public List<UsuarioWithIdResponse> toResponse(List<Usuario> domains){
+        return domains.stream()
+                .map(this::toResponse)
                 .toList();
     }
 
