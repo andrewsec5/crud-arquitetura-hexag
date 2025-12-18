@@ -6,7 +6,7 @@ import br.com.andrewsec5.sistema_pix.core.domain.Usuario;
 
 import java.util.List;
 
-public class UsuarioMapper {
+public class EntityMapper {
 
     public UsuarioEntity toEntity(Usuario usuario){
         return new UsuarioEntity(usuario.getId(), usuario.getNome(), usuario.getDataNascimento(), usuario.getCpf(), usuario.isAtivo());
@@ -19,16 +19,6 @@ public class UsuarioMapper {
     public List<Usuario> toDomain(List<UsuarioEntity> entities){
         return entities.stream()
                 .map(this::toDomain)
-                .toList();
-    }
-
-    public UsuarioWithIdResponse toResponse(Usuario domain){
-        return new UsuarioWithIdResponse(domain.getId(), domain.getNome(), domain.getCpf(), domain.getDataNascimento());
-    }
-
-    public List<UsuarioWithIdResponse> toResponse(List<Usuario> domains){
-        return domains.stream()
-                .map(this::toResponse)
                 .toList();
     }
 

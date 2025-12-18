@@ -1,7 +1,7 @@
 package br.com.andrewsec5.sistema_pix.adapter.output.persistence;
 
 import br.com.andrewsec5.sistema_pix.adapter.output.entity.UsuarioEntity;
-import br.com.andrewsec5.sistema_pix.adapter.output.mapper.UsuarioMapper;
+import br.com.andrewsec5.sistema_pix.adapter.output.mapper.EntityMapper;
 import br.com.andrewsec5.sistema_pix.core.domain.Usuario;
 import br.com.andrewsec5.sistema_pix.port.output.UsuarioRepositoryPort;
 
@@ -11,9 +11,9 @@ import java.util.Optional;
 public class UsuarioRepositoryImpl implements UsuarioRepositoryPort {
 
     private final UsuarioJpaRepository repository;
-    private final UsuarioMapper mapper;
+    private final EntityMapper mapper;
 
-    public UsuarioRepositoryImpl(UsuarioJpaRepository repository, UsuarioMapper mapper) {
+    public UsuarioRepositoryImpl(UsuarioJpaRepository repository, EntityMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

@@ -1,6 +1,6 @@
 package br.com.andrewsec5.sistema_pix.config;
 
-import br.com.andrewsec5.sistema_pix.adapter.output.mapper.UsuarioMapper;
+import br.com.andrewsec5.sistema_pix.adapter.output.mapper.EntityMapper;
 import br.com.andrewsec5.sistema_pix.adapter.output.persistence.UsuarioJpaRepository;
 import br.com.andrewsec5.sistema_pix.adapter.output.persistence.UsuarioRepositoryImpl;
 import br.com.andrewsec5.sistema_pix.core.useCase.UsuarioService;
@@ -18,13 +18,13 @@ public class AppConfig {
     }
 
     @Bean
-    public UsuarioRepositoryPort usuarioRepositoryPort(UsuarioJpaRepository usuarioJpaRepository, UsuarioMapper usuarioMapper){
-        return new UsuarioRepositoryImpl(usuarioJpaRepository, usuarioMapper);
+    public UsuarioRepositoryPort usuarioRepositoryPort(UsuarioJpaRepository usuarioJpaRepository, EntityMapper entityMapper){
+        return new UsuarioRepositoryImpl(usuarioJpaRepository, entityMapper);
     }
 
     @Bean
-    public UsuarioMapper usuarioMapper(){
-        return new UsuarioMapper();
+    public EntityMapper usuarioMapper(){
+        return new EntityMapper();
     }
 
 }

@@ -1,7 +1,7 @@
 package br.com.andrewsec5.sistema_pix.adapter.input;
 
+import br.com.andrewsec5.sistema_pix.adapter.input.mapper.UsuarioMapper;
 import br.com.andrewsec5.sistema_pix.adapter.output.UsuarioWithIdResponse;
-import br.com.andrewsec5.sistema_pix.adapter.output.mapper.UsuarioMapper;
 import br.com.andrewsec5.sistema_pix.core.domain.Usuario;
 import br.com.andrewsec5.sistema_pix.port.input.UsuarioServicePort;
 import org.springframework.web.bind.annotation.*;
